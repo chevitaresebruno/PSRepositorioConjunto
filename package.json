@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "spark-leds-beta": "^0.2.6"
+  }
+}
