@@ -11,7 +11,8 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-
+    env:
+      GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,12 +49,12 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.REPOSITORY_TOKEN }}@github.com/${{ github.repository }}
           git push
 
-      # - name: Run Made CLI
-      #   run: npx made-cli generate ./artifacts/TodoList.made
-      # - name: Commit and push Made
-      #   run: |
-      #     git add .
-      #     git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
-      #     git remote set-url origin https://x-access-token:${{ secrets.REPOSITORY_TOKEN }}@github.com/${{ github.repository }}
-      #     git push
+      - name: Run Made CLI
+        run: npx made-cli github ./artifacts/TodoList.made && npx made-cli generate ./artifacts/TodoList.made -d ./artifacts
+      - name: Commit and push Made
+        run: |
+          git add .
+          git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
+          git remote set-url origin https://x-access-token:${{ secrets.REPOSITORY_TOKEN }}@github.com/${{ github.repository }}
+          git push
 
