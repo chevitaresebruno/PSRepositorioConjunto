@@ -30,10 +30,10 @@ jobs:
         run: npx andes-cli generate ./TodoList.andes
 
       - name: Run Spark CLI
-        run: npx spark-cli generate artifacts/TodoList.spark
+        run: npx spark-cli generate ./artifacts/TodoList.spark
 
-      - name: Run Made CLI
-        run: npx made-cli generate artifacts/TodoList.made
+      # - name: Run Made CLI
+      #   run: npx made-cli generate ./artifacts/TodoList.made
 
       - name: Commit and push generated files
         run: |
