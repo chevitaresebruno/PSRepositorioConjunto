@@ -50,7 +50,9 @@ jobs:
           git push
 
       - name: Run Made CLI
-        run: npx made-cli github ./artifacts/TodoList.made && npx made-cli generate ./artifacts/TodoList.made -d ./artifacts
+        run: |
+          npx made-cli github ./artifacts/TodoList.made
+          npx made-cli generate ./artifacts/TodoList.made -d ./artifacts
       - name: Commit and push Made
         run: |
           git add .
