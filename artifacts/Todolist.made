@@ -1,0 +1,38 @@
+
+project Todolist {
+	name: "ToDoList"
+	description: "Sistema para organização de tarefas diárias"
+	startDate: 2025-07-03
+	dueDate: 2025-07-03
+}
+
+backlog Todolist {
+	name: "ToDoList"
+	description: "Sistema para organização de tarefas diárias"
+	epic Cadastro {
+		name: "Cadastro"
+	}
+	epic GerenciamentoTarefas {
+		name: "GerenciamentoTarefas"
+	}
+	epic OrganizacaoTarefas {
+		name: "OrganizacaoTarefas"
+	}
+	epic Notificacoes {
+		name: "Notificacoes"
+	}
+	epic domaindiagram {
+		name: "domaindiagram"
+		story createmodule_ToDoApp {
+			name: "Create database infrastruture to module ToDoApp"
+			observation: ""
+			task create_module {
+				name: "Implements domain modules"
+			}
+			task create_repository {
+				name: "Implements data repository"
+				depends: Todolist.domaindiagram.createmodule_ToDoApp.create_module
+			}
+		}
+	}
+}
