@@ -1,0 +1,15 @@
+
+-- Desabilitar constraints de chave estrangeira
+ALTER TABLE Usuario NOCHECK CONSTRAINT ALL;
+ALTER TABLE Categoria NOCHECK CONSTRAINT ALL;
+ALTER TABLE Tarefa NOCHECK CONSTRAINT ALL;
+
+-- Deletar dados das tabelas
+DELETE FROM Usuario;
+DELETE FROM Categoria;
+DELETE FROM Tarefa;
+
+-- Habilitar constraints de chave estrangeira
+ALTER TABLE Usuario WITH CHECK CHECK CONSTRAINT ALL;
+ALTER TABLE Categoria WITH CHECK CHECK CONSTRAINT ALL;
+ALTER TABLE Tarefa WITH CHECK CHECK CONSTRAINT ALL;
