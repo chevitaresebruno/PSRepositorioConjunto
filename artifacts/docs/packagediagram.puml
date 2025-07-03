@@ -1,3 +1,0 @@
-@startuml ToDoList
-namespace ToDoApp{}
-@enduml
