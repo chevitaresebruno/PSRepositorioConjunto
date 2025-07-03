@@ -1,0 +1,42 @@
+@startuml ToDoApp
+    enum Prioridade {
+         BAIXA
+        MEDIA
+        ALTA
+    }
+    enum Status {
+         PENDENTE
+        ANDAMENTO
+        CONCLUIDA
+        CANCELADA
+    }
+    class Usuario {
+    string: nome
+    email: _email
+    string: senha
+
+    }
+
+
+
+    class Categoria {
+    string: nome
+
+    Usuario: usuario
+    }
+
+
+    Categoria "1" -- "0..*" Usuario : usuario >
+
+    class Tarefa {
+    string: titulo
+    string: descricao
+    date: data_vencimento
+
+    Categoria: categoria
+    Usuario: usuario
+    }
+
+    Tarefa "1" -- "1" Prioridade : prioridade>,Tarefa "1" -- "1" Status : status>
+
+@enduml
