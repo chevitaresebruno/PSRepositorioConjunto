@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Andes CLI
         run: npx andes-cli generate ./TodoList.andes
-      - name: Commit and push generated files
+      - name: Commit and push Andes
         run: |
           git add .
           git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Spark CLI
         run: npx spark-cli generate ./artifacts/ToDoList.spark
-      - name: Commit and push generated files
+      - name: Commit and push Spark
         run: |
           git add .
           git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
@@ -48,10 +48,9 @@ jobs:
 
       # - name: Run Made CLI
       #   run: npx made-cli generate ./artifacts/TodoList.made
-      # - name: Commit and push generated files
+      # - name: Commit and push Made
       #   run: |
       #     git add .
       #     git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
       #     git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
