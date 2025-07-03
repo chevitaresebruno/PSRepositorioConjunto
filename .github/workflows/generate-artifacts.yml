@@ -25,22 +25,33 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Run Andes CLI
-        run: npx andes-cli generate ./TodoList.andes
-
-      - name: Run Spark CLI
-        run: npx spark-cli generate ./artifacts/TodoList.spark
-
-      # - name: Run Made CLI
-      #   run: npx made-cli generate ./artifacts/TodoList.made
-
-      - name: Commit and push generated files
+      - name: Setup Github
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Run Andes CLI
+        run: npx andes-cli generate ./TodoList.andes
+      - name: Commit and push generated files
+        run: |
           git add .
           git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
           git push
+
+      - name: Run Spark CLI
+        run: npx spark-cli generate ./artifacts/ToDoList.spark
+      - name: Commit and push generated files
+        run: |
+          git add .
+          git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
+          git push
+
+      # - name: Run Made CLI
+      #   run: npx made-cli generate ./artifacts/TodoList.made
+      # - name: Commit and push generated files
+      #   run: |
+      #     git add .
+      #     git diff --cached --quiet || git commit -m "chore: generate artifacts [skip ci]"
+      #     git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
